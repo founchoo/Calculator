@@ -13,6 +13,7 @@
 #include<math.h>
 #include<stdbool.h>
 #include<string.h>
+#include"E:\Documents\lib\dart.toolkit.c.h"
 
 char* calculate(char* e);
 double handleNumber(char* e);
@@ -336,84 +337,6 @@ char* handleOperator(char* expression)
 	}
 	//printf("HandleOperator:%s\n", expression);
 	return e;
-}
-
-void replace(char* e, char* oldChars, char* newChars, bool replaceAll, int replaceIndex)
-{
-	//printf("\n替换的对象：%s\n旧字符串：%s 新字符串：%s", e, oldChars, newChars);
-	int oldlength = strlen(oldChars);
-	int newlength = strlen(newChars);
-	//printf("\n旧字符串长度：%d 新字符串长度：%d", oldlength, newlength);
-	do
-	{
-		//将字符串切割成 3 部分：前部分parta，旧字符串部分oldChars，后部分partb
-		char* a = strstr(e, oldChars);
-		int partalength = strlen(e) - strlen(a);
-		char* parta = (char*)malloc(sizeof(char) * (partalength + 1));
-		memset(parta, '\0', sizeof(char) * (partalength + 1));
-		if (!replaceAll)
-		{
-			if (partalength != replaceIndex)
-			{
-				break;
-			}
-		}
-		int partblength = strlen(a) - oldlength;
-		//printf("\n字符串A：%s 长度：%d", a, partalength);
-		char* partb = (char*)malloc(sizeof(char) * (partblength + 1));
-		memset(partb, '\0', sizeof(char) * (partblength + 1));
-		//printf("\n字符串B：%s 长度：%d", partb, partblength);
-		//填充parta
-		for (int i = 0; i < partalength; i++)
-		{
-			parta[i] = e[i];
-		}
-		//填充partb
-		for (int i = 0; i < partblength; i++)
-		{
-			partb[i] = e[partalength + oldlength + i];
-		}
-		//填充源字符串
-		memset(e, '\0', sizeof(char) * LENGTH);
-		for (int i = 0; i < partalength; i++)
-		{
-			e[i] = parta[i];
-		}
-		for (int i = 0; i < newlength; i++)
-		{
-			e[i + partalength] = newChars[i];
-		}
-		for (int i = 0; i < partblength; i++)
-		{
-			char temp = partb[i];
-			e[i + partalength + newlength] = partb[i];
-		}
-	} while (replaceAll && strstr(e, oldChars) != NULL);
-	//printf("\n替换结果：%s\n", e);
-}
-
-bool isNumber(char c)
-{
-	if (('0' <= c && c <= '9') || c == '.')
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-bool isExist(char* e, char c)
-{
-	if (strchr(e, c) == NULL)
-	{
-		return false;
-	}
-	else
-	{
-		return true;
-	}
 }
 
 void test()

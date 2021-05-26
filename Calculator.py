@@ -148,7 +148,7 @@ def test():
 	expression1 = [
 		"(-2)+2-(-52)*(-1)*5+87/(-3)*(-1)",
 		"(2/3+1/2)/(-1/12)*(-12)"
-    ]
+	]
 	for i in range(0, 2):
 		print(expression1[i] + " = " + calculate(expression1[i]))
 

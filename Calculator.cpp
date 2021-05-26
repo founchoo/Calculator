@@ -5,15 +5,15 @@
 	Copyright Dart 2020 - 2021
 */
 #include <iostream>
-#include <sstream>
+#include <algorithm>
+#include <math.h>
+#include "E:\Documents\lib\dart.toolkit.c.h"
 
 using namespace std;
 
 string calculate(string e);
 double handleNumber(string e);
 string handleOperator(string e);
-bool isNumber(char c);
-void string2num(string str, double& num);
 void test();
 
 int places = 2;
@@ -244,25 +244,6 @@ string handleOperator(string expression)
 	}
 	//cout << "HandleOperator:" << expression;
 	return e;
-}
-
-bool isNumber(char c)
-{
-	if (('0' <= c && c <= '9') || c == '.')
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-void string2num(string str, double& num)
-{
-	stringstream ss;
-	ss << str;
-	ss >> num;
 }
 
 void test()
